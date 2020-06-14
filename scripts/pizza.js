@@ -10,7 +10,7 @@ class Pizza extends Controller {
     const choice = Pizza.makeChoice(diagonals.length);
 
     this.direction = diagonals[choice];
-    this.velocity = Pizza.makeChoice(10) + 2;
+    this.velocity = Pizza.makeChoice(5) + 2;
     super.move();
   }
 
