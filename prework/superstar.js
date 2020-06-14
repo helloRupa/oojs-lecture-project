@@ -25,8 +25,9 @@ class Superstar {
   }
 }
 
-// class variable, cannot be declared inside the class
-// Next version of JS will change that
+// Class variable, cannot be declared inside the class
+// Next version of JS will change that.
+// Nice to know but not a need to know for Mod 4
 Superstar.all = [];
 
 // child class, inheritance
