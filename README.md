@@ -67,10 +67,14 @@ class Superstar {
 
 ## JS's `this` vs Ruby's `self`
 
+## Declaring a child class (inheritance)
+
 ## MDN reference
 [MDN class reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#:~:text=JavaScript%20classes%2C%20introduced%20in%20ECMAScript,oriented%20inheritance%20model%20to%20JavaScript)
 
 ## Nice to know if you have the time one day:
+- [JS Prototype](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+    - notice how `function Person` relates to class syntax - this is what the new class syntax is sugaring
 - Private instance variables (in MDN link above)
 - Class expression (also in MDN link)
     - Like a function expression! You know like how you store a function in like a variable and like all that jazz and stuff!
@@ -78,5 +82,3 @@ class Superstar {
 - Four pillars of object-oriented programming
     - [Dev.to Article on Four Pillars](https://dev.to/austinbh/the-four-pillars-of-object-oriented-programming-5bda)
     - [More Info on Polymorphism as the article above is too simplistic](https://thoughtbot.com/blog/back-to-basics-polymorphism-and-ruby)
-- [JS Prototype](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
-    - notice how `function Person` relates to class syntax - this is what the new class syntax is sugaring
