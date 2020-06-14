@@ -22,6 +22,7 @@ We also have two secondary goals:
 - Distinguish between `this` in JS and `self` in Ruby
 - Declare a child class and get familiar with `super` (`super` is the same in Ruby)
 - Finish the silly webpage using class syntax
+    - You can see the completed code here: https://github.com/helloRupa/oojs-lecture-project
 
 ## Declaring a class in JS
 In Ruby, we place any functionality which we want to run as soon as an object is instantiated inside of #initialize. In JS, we use constructor(). Similar to Ruby, constructor() is optional. You only include it when you need it.
