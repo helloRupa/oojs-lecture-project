@@ -8,12 +8,13 @@ class Bjork extends Controller {
     return Math.floor(Math.random() * limit);
   }
 
+  // When a Bjork is clicked, make more Bjorks but send them in different directions
+  // at different speeds
   addCustomAction() {
     this.element.addEventListener('click', () => {
       const directions = ['up', 'down', 'left', 'right'];
       const bjork = new Bjork({ x: this.x, y: this.y });
       const choice = Bjork.makeChoice(directions.length);
-      console.log('clicked', Math.random())
 
       bjork.setDirection(directions[choice]);
       bjork.velocity = Bjork.makeChoice(4) + 1;

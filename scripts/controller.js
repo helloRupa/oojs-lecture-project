@@ -35,10 +35,13 @@ class Controller {
     this.place([dX, dY]);
   }
 
-  cleanUp() {
-    if (this.x < 0 || this.x > this.bounds.x ||
-        this.y < 0 || this.y > this.bounds.y) {
+  outOfBounds() {
+    return (this.x < 0 || this.x > this.bounds.x ||
+      this.y < 0 || this.y > this.bounds.y);
+  }
 
+  cleanUp() {
+    if (this.outOfBounds()) {
       this.element.remove();
       clearInterval(this.animate);
     }
