@@ -1,5 +1,5 @@
 class Controller {
-  constructor(x, y, velocity, dir, img) {
+  constructor({ x, y, velocity, dir, img }) {
     this.x = x;
     this.y = y;
     this.velocity = velocity;

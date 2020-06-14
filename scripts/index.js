@@ -7,6 +7,5 @@ document.addEventListener('click', e => {
     objectType = parent.id;
   }
 
-  console.log(e.clientX, e.clientY)
-  new Controller(e.clientX, e.clientY, 1, 'down', './assets/bjork.png');
+  new Bjork({ x: e.clientX, y: e.clientY });
 });
