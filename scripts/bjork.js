@@ -4,6 +4,7 @@ class Bjork extends Controller {
     this.addCustomAction();
   }
 
+  // choose a random number up to a limit
   static makeChoice(limit) {
     return Math.floor(Math.random() * limit);
   }

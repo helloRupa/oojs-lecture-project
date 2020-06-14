@@ -35,11 +35,13 @@ class Controller {
     this.place([dX, dY]);
   }
 
+  // check if image el is off screen
   outOfBounds() {
     return (this.x < 0 || this.x > this.bounds.x ||
       this.y < 0 || this.y > this.bounds.y);
   }
 
+  // remove el if off screen
   cleanUp() {
     if (this.outOfBounds()) {
       this.element.remove();
@@ -47,6 +49,7 @@ class Controller {
     }
   }
 
+  // put el on screen and animate
   render() {
     this.place();
     document.body.append(this.element);
