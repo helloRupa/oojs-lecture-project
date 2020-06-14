@@ -50,6 +50,8 @@ class Controller {
   }
 
   // put el on screen and animate
+  // !!DO NOT USE SETINTERVAL TO ANIMATE IN SERIOUS PROJECTS!!
+  // Look into requestAnimationFrame instead
   render() {
     this.place();
     document.body.append(this.element);
@@ -58,5 +60,10 @@ class Controller {
       this.move();
       this.cleanUp();
     }, 10);
+  }
+
+  // choose a random number up to a limit
+  static makeChoice(limit) {
+    return Math.floor(Math.random() * limit);
   }
 }

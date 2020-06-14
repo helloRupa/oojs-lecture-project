@@ -3,7 +3,8 @@ let objectType;
 // Lookup table
 const classNames = {
   bjork: Bjork,
-  bubble: Bubble
+  bubble: Bubble,
+  pizza: Pizza
 };
 
 document.addEventListener('click', e => {

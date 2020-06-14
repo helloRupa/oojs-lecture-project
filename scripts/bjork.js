@@ -1,12 +1,8 @@
 class Bjork extends Controller {
   constructor({ x, y }) {
+    // required in children containing a constructor, otherwise no inheritance
     super({ x, y, velocity: 1, img: './assets/bjork.png', dir: 'down' });
     this.addCustomAction();
-  }
-
-  // choose a random number up to a limit
-  static makeChoice(limit) {
-    return Math.floor(Math.random() * limit);
   }
 
   // When a Bjork is clicked, make more Bjorks but send them in different directions
@@ -18,7 +14,7 @@ class Bjork extends Controller {
       const choice = Bjork.makeChoice(directions.length);
 
       bjork.setDirection(directions[choice]);
-      bjork.velocity = Bjork.makeChoice(4) + 1;
+      bjork.velocity = Bjork.makeChoice(6) + 1;
     });
   }
 }
