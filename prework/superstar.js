@@ -37,7 +37,7 @@ class Bjork extends Superstar {
     // must call super(). Otherwise inheritance won't happen and 
     // you'll get an error. In this case, super() calls the 
     // constructor() on the parent. The same is true for Ruby
-    super('Bjork', 'Music');
+    super('Bjork', 'Do all the things');
   }
 }
 
@@ -45,7 +45,7 @@ class Bjork extends Superstar {
 Superstar.about();
 
 // create instances of classes and call instance methods
-const star = new Superstar('Beth Gibbons', 'Singing');
+const star = new Superstar('Beth Gibbons', 'Sing');
 star.introduce();
 star.introduceAgain();
 
@@ -60,6 +60,11 @@ bjork.introduce();
 // related to this (context). Don't worry if you don't understand
 // it. The most important thing right now is to get used to the error,
 // so you can recognize and debug it
+
+// Note that there is really no equivalent of passing a named callback
+// like so in Ruby. In Ruby, you can pass Procs, blocks and lambdas, but
+// they are functionally different, which is why there's no matching
+// example in the rb file. Don't worry if that sounded like gibberish.
 function introduceYourselfAgain(callback) {
   callback();
 }

@@ -27,7 +27,7 @@ end
 # child class, inheritance
 class Bjork < Superstar 
   def initialize
-    super('Bjork', 'Music')
+    super('Bjork', 'Do all the things')
   end
 end
 
@@ -35,21 +35,8 @@ end
 Superstar.about
 
 # create instances and call instance methods
-star = Superstar.new('Beth Gibbons', 'Singing')
+star = Superstar.new('Beth Gibbons', 'Sing')
 star.introduce
 
 bjork = Bjork.new
 bjork.introduce
-
-
-# It's OK if you don't get to the below before lecture
-
-# Save this for last, I just want you to notice that there is a 
-# difference between self in Ruby and this in JS
-def introduce_yourself_again
-  # this method is calling a block that was provided as
-  # an argument. Remind you of something?
-  yield
-end
-
-introduce_yourself_again { star.introduce }

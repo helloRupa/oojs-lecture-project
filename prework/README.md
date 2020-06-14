@@ -11,8 +11,8 @@ To play with the JS code, copy and paste it into the Dev Tools console.
 
 Most important things to look out for:
 - constructor()
-- instance variables
-- instance methods
+- instance variables (aka instance properties)
+- instance methods (aka prototype methods)
     - two ways to declare them
     - we'll go over the difference in lecture: `this`
 - inheritance syntax
@@ -22,7 +22,7 @@ Most important things to look out for:
 ## If you are comfortable with the above:
 Try this out in the Dev Tools on any webpage. Notice the difference in what's logged to the console. 
 
-Copy and paste the code snippet (Yes, it's adding to event handlers to the body for click):
+Copy and paste the code snippet (Yes, it's adding two event handlers to the body for click):
 ```
 document.body.addEventListener('click', function() {
   console.log('');
