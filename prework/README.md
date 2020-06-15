@@ -37,3 +37,4 @@ document.body.addEventListener('click', () => {
 });
 ```
 **Don't forget to click the body!**
+See if you can understand what's going on here by the end of lecture. If you want, we can talk about it after lecture.
