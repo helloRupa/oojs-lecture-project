@@ -66,7 +66,7 @@ class Superstar {
 }
 ```
 
-**Task: Let's declare a class called Candle, with a property called scent, a prototype method called tellMeYourSmell, and a static method called smellTheBurn**
+**Task: Let's declare a class called Candle, with a property called scent, a prototype method called tellMeYourSmell, and a static method called burnCandle**
 
 ## JS's `this` vs Ruby's `self`
 In Ruby, we have `self`, which refers to the specific instance of an object. `self` never changes. It knows who it is and who it will be in the future. It doesn't need to go on any personal journeys to discover who it is.
