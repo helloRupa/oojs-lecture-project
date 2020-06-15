@@ -288,7 +288,7 @@ In Ruby, we create little class babies using `<`. In JS, we use `extends` as in 
 
 In JS, everything else remains the same in terms of declaring methods and properties inside the child class, with one exception.
 
-If we want to change the constructor() inside of a child class, we must use the `super` keyword, which is used to access and call functions on the object's parent. If we don't, we'll get an error and there will be no inheritance. For inheritance to work, the parent's constructor must be called. (This same is true in Ruby, which also uses `super`)
+If we want to change the constructor() inside of a child class, we must use the `super` keyword, which is used to access and call functions on the object's parent. If we don't, we'll get an error and there will be no inheritance. For inheritance to work, the parent's constructor must be called. (The same is true in Ruby, which also uses `super`)
 ```
 class Animal {
   constructor(name) {
