@@ -39,6 +39,7 @@ class Superstar {
 
 We don't need to add special methods for accessing instance variables defined like this: `this.name = 'my name'`. They are automatically available for reading and writing to in JS.
 ```
+const star = new Superstar('Name McNameFace');
 star.name = 'Jarvis Cocker';
 console.log(star.name);
 ```
