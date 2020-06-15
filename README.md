@@ -89,7 +89,7 @@ end
 honey_badger = IamWhoIAm.new('Honey Badger')
 puts honey_badger.say_name # I am Honey Badger
 ```
-In Ruby, it doesn't matter where or how or where we call honey_badger.say_name, it always prints the name in the object you expect it to be associated with: 'Honey Badger'
+In Ruby, it doesn't matter how or where we call honey_badger.say_name, it always prints the name in the object you expect it to be associated with: 'Honey Badger'
 
 In JS, there is no `self` of even anything truly like it. Instead we have `this`. `this` refers to the context in which a function was called. The value of `this` can change depending on how/where the function was called as well as which syntax was used to define the function (function syntax or arrow syntax). 
 
