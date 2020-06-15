@@ -39,7 +39,7 @@ class Superstar {
 
 We don't need to add special methods for accessing instance variables defined like this: `this.name = 'my name'`. They are automatically available for reading and writing to in JS.
 ```
-const star = new Superstar('Name McNameFace');
+const star = new Superstar('Namey McNameFace');
 star.name = 'Jarvis Cocker';
 console.log(star.name);
 ```
@@ -65,6 +65,8 @@ class Superstar {
   }
 }
 ```
+
+**Task: Let's declare a class called Candle, with a property called scent, a prototype method called tellMeYourSmell, and a static method called smellTheBurn**
 
 ## JS's `this` vs Ruby's `self`
 In Ruby, we have `self`, which refers to the specific instance of an object. `self` never changes. It knows who it is and who it will be in the future. It doesn't need to go on any personal journeys to discover who it is.
