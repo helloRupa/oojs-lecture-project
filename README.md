@@ -1,5 +1,5 @@
 # Object-Oriented JavaScript
-Here's what we'll be building together today using JS class syntax:
+Here's what we'll be building together today using JS class syntax (brought to you by a giant dose of Edwinspiration):
 ![](assets/example.gif)
 
 Some of this has already been built out. We'll be adding some functionality to the parent class and creating one child class to practice our OO JS skills.
@@ -88,9 +88,9 @@ puts honey_badger.say_name # I am Honey Badger
 ```
 In Ruby, it doesn't matter where or how or where we call honey_badger.say_name, it always prints the name in the object you expect it to be associated with: 'Honey Badger'
 
-In JS, there is no `self` of even anything truly like it. Instead we have `this`. `this` refers to the context in which a function was called. The value of `this` can change depending on how/where it was called as well as which syntax was used to define the function (function syntax or arrow syntax). 
+In JS, there is no `self` of even anything truly like it. Instead we have `this`. `this` refers to the context in which a function was called. The value of `this` can change depending on how/where the function was called as well as which syntax was used to define the function (function syntax or arrow syntax). 
 
-Think of it like this: You go to a restaurant called Subways Fancy Feasts and are served by a waiter...let's call him Cire. In Ruby, Cire only works at Subways Fancys Feasts, and he only offers items off of that restaurant's menu. In JS, Cire can be a waiter anywhere: Maybe you see him at Truffle Village, Subways Fancy Feasts, and Black Cat Cafe. He's a bit of a chameleon, and what he offers you off of the menu, depends upon which restaurant you see him in, aka the context in which you see him. If you see him sitting down to eat, you get an error, because he isn't even a waiter anymore.
+Think of it like this: You go to a restaurant called Subways Fancy Feasts and are served by a waiter...let's call him Cire. In Ruby, Cire only works at Subways Fancys Feasts, and he only offers items off of that restaurant's menu. In JS, Cire can be a waiter anywhere: Maybe you see him at Truffle Village, Subways Fancy Feasts, and Black Cat Cafe. He's a bit of a chameleon, and what he offers you off of the menu, depends upon which restaurant you see him in, aka the context in which you see him. If you see him sitting down to eat, you get an error, because he isn't even a waiter anymore and just wants to eat in peace.
 
 Let's check out some code examples where we log the value of `this`:
 ```
@@ -105,7 +105,7 @@ justLogThis(); // Window {parent: Window, opener: null, top: Window, length: 1,
 ```
 class Cat {
   constructor() {
-      this.name = 'Kits McGee';
+    this.name = 'Kits McGee';
   }
     
   meow() {
@@ -121,80 +121,209 @@ kits.meow();
 ```
 `meow()` was called from/by `kits`. In this case, `this` equals the instance of the Cat that called it. Pretty normal stuff so far.
 
-> Shortcut to figuring out what the value of `this` is in many cases (not all though): Was the method called from another object using the dot operator `.` like in the example above. `this` refers to the object before the dot.
-
+> Shortcut to figuring out what the value of `this` is in many cases (though not all): If the method was called from another object using the dot operator `.` like in the example above (`kits.meow()`), `this` inside of that method (like `meow()`) refers to the object before the dot (`kits`). If it wasn't invoked after a `.`, it's the global object (Window in the browser, undefined in some other environments).
 
 ### What you absolutely need to know about `this` for Mod 4
 Please plan on getting a grasp on `this` and context in JS before or shortly after you graduate. It's an important concept that will help you become a proficient JS programmer and delight your interviewers.
 
-***Here's the shortest story: In React, when using class syntax, declare prototype methods using arrow syntax. There's an example further below.***
+> Here's the shortest story: In React, when using class syntax, declare prototype methods using arrow syntax. There's an example further below.
 
-The important thing to know for Mod 4 is that if you define prototype (instance) methods using standard syntax, you will get an error if you forget to bind the context (the value of `this`) before using it as a callback to an event handler inside of `render()`. The code below creates a paragraph element and adds a click handler to it. When the paragraph is clicked, the user should see an alert with a greeting. Don't worry about understanding all of the below code, I just want you to see the error, so you can debug it when/if it happens.
+If at this point, you've had enough of `this`, feel free to skip to the key takeaways.
+
+### Unexpected value of `this`
+Keep remembering that the value of `this` is based on how it's called. We'll add onto this in a moment regarding the differences between arrow and function syntax.
 ```
-class Greeting extends React.Component {
+class Cat {
   constructor() {
-    super();
-    this.name = 'Bear Party';
+    this.name = 'Kits McGee';
+  }
+    
+  meow() {
+    console.log(`${this.name} says Meeeow`);
   }
 
-  greeting() {
-    alert(`My most beautiful name is ${this.name}`);
-  }
-
-  render() {
-    return (
-      <p onClick={ this.greeting }>Click Me!!</p>
-    )
+  meowTwice() {
+    this.meow();
+    this.meow();
+    console.log(this);
   }
 }
+
+const kits = new Cat();
+kits.meowTwice();
+
+// Kits McGee says Meeeow
+// Kits McGee says Meeeow
+// Cat {name: "Kits McGee"} <- value of this
 ```
-
-In the above code, clicking on the paragraph in the DOM will cause the following error: `Uncaught TypeError: Cannot read property 'name' of undefined`
-Think about what that error means. What might have changed or gotten lost between attaching the handler, running the code and clicking on the paragraph?
-
-The answer is that the context, aka the value of `this`, changed, because the context in this case, depends on from where the function is called.
-
-**Note: If we had just run `greeting()`, we would not have gotten an error. `<p>{ this.greeting() }</p>` would not have caused an error. Just be aware that the error occurs when we use prototype methods as callbacks.**
-
-There are a few ways to resolve this error and ensure that the context is bound to `greeting()`. Let's go over the two most popular ways of ensuring this error does not occur:
-
-Bind the context to the method in the constructor: 
+OK, things are still pretty normal. Everything works and logs as expected. Now let's get weird.
 ```
-class Greeting extends React.Component {
+class Cat {
   constructor() {
-    // some code
-    super();
-    this.name = 'Bear Party';
-    this.greeting = this.greeting.bind(this);
+    this.name = 'Kits McGee';
   }
-  // more code
-}
-```
-
-OR declare your prototype methods using arrow syntax:
-```
-class Greeting extends React.Component {
-  constructor() {
-    super();
-    this.name = 'Bear Party';
-    // No need to bind when using arrow syntax!
+    
+  meow() {
+    console.log('The value of this inside the callback is:');
+    console.log(this);
+    console.log(`${this.name} says Meeeow`);
   }
 
-  // automatically bind the context to the method using
-  // arrow syntax
-  greeting = () => {
-    alert(`My most beautiful name is ${this.name}`);
+  makeItMeow() {
+    console.log('Makin\' it meow like rain!!')
+    this.customMeow(this.meow); // passing a callback!
   }
 
-  render() {
-    return (
-      <p onClick={ this.greeting }>Click Me!!</p>
-    )
+  customMeow(callback) {
+    callback();
   }
 }
+
+const kits = new Cat();
+kits.makeItMeow();
+
+// Makin' it meow like rain!!   <- logged by makeItMeow()
+// The value of this inside the callback is:   <- logged by meow()
+// undefined   <- the value of this inside the callback when it's invoked (meow())
+// Uncaught TypeError: Cannot read property 'name' of undefined   <- the context changed,
+// so we got an error when we tried to get the value from this.name
 ```
+This is pretty weird and unexpected. We passed `this.meow` as a callback to `makeItMeow()` inside of the class itself, and yet the value of `this` when the callback was actually invoked was `undefined` and we could not make Kits McGee meow!
+
+So what happened here? Take a look at `customMeow()` and how `callback` is being invoked. Remember that tip from earlier about the `.` and all that jazz. Do you see a dot before `callback`? I know I don't. Since `customMeow()` invoked `callback`, the context was set to the default context inside of `class`, which is `undefined`. In other words, the context is not automtically bound to a prototype method when it's defined using standard syntax or when it's called.
+
+> You can think of it like this: When `this.meow` was provided as a named callback (passed by reference), it passed the method but not the object we thought it was attached to (an instance of Cat). The method is not glued to the instance. 
+
+You'll get the same error with this code for the same reason as above:
+```
+const meow = kits.meow;
+meow(); // Uncaught TypeError: Cannot read property 'name' of undefined
+```
+
+### So how do we bind the context (aka `this`) to the method, so it doesn't get lost
+You have two options for gluing (aka binding) the value of `this` to the method. You can use the `bind()` function or declare your prototype methods using arrow syntax:
+
+Using `bind()` inside `customMeow()`:
+```
+class Cat {
+  constructor() {
+    this.name = 'Kits McGee';
+  }
+    
+  meow() {
+    console.log('The value of this inside the callback is:');
+    console.log(this);
+    console.log(`${this.name} says Meeeow`);
+  }
+
+  makeItMeow() {
+    console.log('Makin\' it meow like rain!!')
+    this.customMeow(this.meow); // passing a callback!
+  }
+
+  customMeow(callback) {
+    callback.bind(this)(); // LOOK AT THIS LINE
+  }
+}
+
+const kits = new Cat();
+kits.makeItMeow();
+
+// Makin' it meow like rain!!
+// The value of this inside the callback is:
+// Cat {name: "Kits McGee"}
+// Kits McGee says Meeeow
+```
+Why does this work? `bind()` literally binds or glues context to a method. Chaining `bind()` to a method returns a bound method that cannot lose its context. It's like putting a toddler on a leash so they don't run away. Toddlers, like `this`, are slippery creatures. One you can put in a harness on a leash, the other you use with `bind()`. I'll let you figure out which thing goes with which other thing.
+
+Using arrow syntax:
+```
+class Cat {
+  constructor() {
+    this.name = 'Kits McGee';
+  }
+    
+  meow = () => {
+    console.log('The value of this inside the callback is:');
+    console.log(this);
+    console.log(`${this.name} says Meeeow`);
+  }
+
+  makeItMeow = () => {
+    console.log('Makin\' it meow like rain!!')
+    this.customMeow(this.meow); // passing a callback!
+  }
+
+  customMeow = (callback) => {
+    callback.bind(this)(); // LOOK AT THIS LINE
+  }
+}
+
+const kits = new Cat();
+kits.makeItMeow();
+
+// Makin' it meow like rain!!
+// The value of this inside the callback is:
+// Cat {name: "Kits McGee"}
+// Kits McGee says Meeeow
+```
+
+Why does that work? You can imagine the standard syntax for declaring prototype methods (`meow() { }`) being the same as declaring a function using function syntax (`function meow() { }`). With function syntax, a new context is created. In other words every function has its own value for `this`, and the value of `this` is determined when the code runs, or rather, when it's invoked. Arrow syntax does not have its own value for `this` - it does not create its own context. The value of `this` for an arrow function is bound to the context of the surrounding code where it's defined. In the example above, the contexts of all the prototype methods are bound to the specific instance of a Cat. About a year ago in this README, I mentioned that context also depends on whether the method was defined using function syntax or arrow syntax. This paragraph here is what I was talking about.
+
+There are other ways to ensure the expected context doesn't get 'lost', but these two options are pretty good, so we'll stop with this business now.
+
+### Key Takeaways on `this`
+- `this` (where/how/context) != `self` (identity)
+- Functions declared using function syntax create their own context (they have their own `this`)
+    - The context (`this`) depends on how the function is invoked: `meow()` vs `kits.meow()`
+- Functions declared using arrow syntax do not create their own context
+    - The value of `this` is bound to the context of the surrounding code where it was defined
+    - If arrow syntax is used to declare prototype methods in a class, for example, the value of `this` is bound to the specific instance of the object
 
 ## Declaring a child class (inheritance)
+In Ruby, we create little class babies using `<`. In JS, we use `extends` as in `class Cat extends Animal`. 
+
+In JS, everything else remains the same in terms of declaring methods and properties inside the child class, with one exception.
+
+If we want to change the constructor() inside of a child class, we must use the `super()` keyword, which is used to access and call functions on the object's parent. If we don't, we'll get an error and there will be no inheritance. For inheritance to work, the parent's constructor must be called. (This same is true in Ruby, which also uses `super`)
+```
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class Cat extends Animal {
+  constructor() {
+    super('Kits McGee McFluffyFacedPants');  // invoke parent's constructor() with required arguments
+  }
+}
+```
+
+Similarly, let's say there's a method declared in the parent class called `talk()`. In our child class, we want `talk()` to do all of its regular business but also do some extra business. Once again, we can use `super` to invoke the matching method on the parent, and also add whatever code we want.
+```
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`Je m'appelle ${this.name}`);
+  }
+}
+
+class Cat extends Animal {
+  constructor() {
+    super('Kits McGee McFluffyFacedPants'); // maintain inheritance
+  }
+
+  speak() {
+    super.speak(); // invoke speak() on the parent class, without this we'll completely override speak()
+    console.log('Je suis le meilleur chat des États Unis !');
+    console.log('Non, une correction. Dans le monde !');
+  }
+}
+```
 
 ## MDN reference
 [MDN class reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#:~:text=JavaScript%20classes%2C%20introduced%20in%20ECMAScript,oriented%20inheritance%20model%20to%20JavaScript)
