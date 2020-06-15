@@ -221,11 +221,11 @@ class Cat {
 
   makeItMeow() {
     console.log('Makin\' it meow like rain!!')
-    this.customMeow(this.meow); // passing a callback!
+    this.customMeow(this.meow.bind(this)); // passing a callback! LOOK AT THIS LINE
   }
 
   customMeow(callback) {
-    callback.bind(this)(); // LOOK AT THIS LINE
+    callback();
   }
 }
 
