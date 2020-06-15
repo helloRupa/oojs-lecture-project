@@ -18,10 +18,10 @@ We also have two secondary goals:
 - Don't have a dumpster fire of functions and variables floating around, unless you're into that sort of thing
 
 ## How we'll get there:
-- Declare a class, including instance variables, instance methods, and class methods
-- Distinguish between `this` in JS and `self` in Ruby
-- Declare a child class and get familiar with `super` (`super` is the same in Ruby)
-- Finish the silly webpage using class syntax
+- [ ] Declare a class, including instance variables, instance methods, and class methods
+- [ ] Distinguish between `this` in JS and `self` in Ruby
+- [ ] Declare a child class and get familiar with `super` (`super` is the same in Ruby)
+- [ ] Finish the silly webpage using class syntax
     - You can see the completed code here: https://github.com/helloRupa/oojs-lecture-project
 
 ## Declaring a class in JS
